@@ -6,13 +6,9 @@
 
             <v-spacer></v-spacer>
 
-            <v-avatar
-                @click="signOut"
-                class="me-3"
-                color="surface-variant"
-                size="32"
-                variant="flat"
-            ></v-avatar>
+            <v-btn @click="signOut" color="red" icon>
+                <v-icon>mdi-logout</v-icon>
+            </v-btn>
         </v-app-bar>
 
         <v-footer app color="grey" height="44"></v-footer>
@@ -21,24 +17,10 @@
             <v-toolbar>
                 <v-list-item
                     prepend-avatar="https://cdn.vuetifyjs.com/images/lists/1.jpg"
-                    title="Nombre usuario"
-                    subtitle="Segretaria"
+                    :title="user?.fullname"
+                    :subtitle="user?.role"
                 />
             </v-toolbar>
-
-            <div class="px-2 my-2">
-                <v-text-field
-                    class="mb-4"
-                    density="compact"
-                    flat
-                    hide-details
-                    prepend-inner-icon="mdi-magnify"
-                    variant="solo-filled"
-                >
-                </v-text-field>
-
-                <v-divider ></v-divider>
-            </div>
 
             <v-list>
                 <v-list-item
@@ -76,15 +58,21 @@
                     </v-slide-group-item>
                 </v-slide-group>
             </v-sheet>
-            <v-container fluid> </v-container>
+            <v-container fluid> 
+
+                {{ user }}
+            </v-container>
         </v-main>
     </v-app>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { router } from "@inertiajs/vue3";
+import { computed, ref } from "vue";
+import { router, usePage } from "@inertiajs/vue3";
 const drawer = ref(true);
+
+const user = computed(() => usePage().props.user);
+
 
 const signOut = async () => {
     router.post("/auth/sign-out");
@@ -94,7 +82,7 @@ const items = [
     {
         title: "Dashboard",
         icon: "mdi-view-dashboard",
-        action: () => router.get("/admin"),
+        action: () => router.get("/s"),
     },
 
 ];

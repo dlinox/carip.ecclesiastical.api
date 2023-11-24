@@ -13,7 +13,11 @@
                         </v-btn>
                     </template>
                     <template v-slot:content="{ dialog }">
-                        <create @on-cancel="dialog" :url="url" :places="places" />
+                        <create
+                            @on-cancel="dialog"
+                            :url="url"
+                            :places="places"
+                        />
                     </template>
                 </BtnDialog>
             </template>
@@ -39,7 +43,7 @@
                         </template>
                         <template v-slot:item.is_active="{ item }">
                             <v-btn
-                                :color=" item.is_active ? 'blue' : 'red'"
+                                :color="item.is_active ? 'blue' : 'red'"
                                 variant="tonal"
                                 density="comfortable"
                             >
@@ -54,7 +58,7 @@
                                             )
                                     "
                                 />
-                                {{ item.is_active ? 'activo' : 'inactivo' }}
+                                {{ item.is_active ? "activo" : "inactivo" }}
                             </v-btn>
                         </template>
                         <template v-slot:action="{ item }">
@@ -75,8 +79,7 @@
                                 </template>
                                 <template v-slot:content="{ dialog }">
                                     <create
-
-                                    :places="places"
+                                        :places="places"
                                         @on-cancel="dialog"
                                         :form-data="item"
                                         :edit="true"
