@@ -59,8 +59,6 @@
                 </v-slide-group>
             </v-sheet>
             <v-container fluid> 
-
-                {{ user }}
             </v-container>
         </v-main>
     </v-app>
