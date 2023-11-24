@@ -34,6 +34,24 @@
 
                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item>
+
+                <v-list-group value="records">
+                    <template v-slot:activator="{ props }">
+                        <v-list-item v-bind="props" title="Busqueda de constancias">
+                            <template v-slot:prepend>
+                        <v-icon> mdi-file-multiple </v-icon>
+                    </template>
+                        </v-list-item>
+                    </template>
+
+                    <v-list-item
+                        v-for="(item, i) in records.children"
+                        :key="i"
+                        :title="item.title"
+                        value="records"
+                        @click="item.action"
+                    ></v-list-item>
+                </v-list-group>
             </v-list>
         </v-navigation-drawer>
 
@@ -48,8 +66,7 @@ import { ref, computed } from "vue";
 import { router, usePage } from "@inertiajs/vue3";
 const drawer = ref(true);
 
-
-const user = computed(() =>  usePage().props.user);
+const user = computed(() => usePage().props.user);
 
 const signOut = async () => {
     router.post("/auth/sign-out");
@@ -71,11 +88,28 @@ const items = [
         icon: "mdi-office-building-marker-outline",
         action: () => router.get("/a/places"),
     },
-
-    {
-        title: "Busqueda de constancias",
-        icon: "mdi-office-building-marker-outline",
-        action: () => router.get("/a/records"),
-    },
 ];
+
+const records = {
+    title: "Busqueda de constancias",
+    icon: "mdi-file-multiple",
+    action: () => router.get("/a/records"),
+    children: [
+        {
+            title: "Bautismo",
+            icon: "mdi-file-multiple",
+            action: () => router.get("/a/records"),
+        },
+        {
+            title: "Confirmación",
+            icon: "mdi-file-multiple",
+            action: () => router.get("/a/records"),
+        },
+        {
+            title: "Matrimonio",
+            icon: "mdi-file-multiple",
+            action: () => router.get("/a/records"),
+        },
+    ],
+};
 </script>
