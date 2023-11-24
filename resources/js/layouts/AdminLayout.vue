@@ -6,13 +6,9 @@
 
             <v-spacer></v-spacer>
 
-            <v-avatar
-                @click="signOut"
-                class="me-3"
-                color="surface-variant"
-                size="32"
-                variant="flat"
-            ></v-avatar>
+            <v-btn @click="signOut" color="red" icon>
+                <v-icon>mdi-logout</v-icon>
+            </v-btn>
         </v-app-bar>
 
         <v-footer app color="grey" height="44"></v-footer>
@@ -25,21 +21,6 @@
                     :subtitle="user.role"
                 />
             </v-toolbar>
-
-            <div class="px-2 my-2">
-                <v-text-field
-                    class="mb-4"
-                    density="compact"
-                    flat
-                    hide-details
-                    prepend-inner-icon="mdi-magnify"
-                    variant="solo-filled"
-                >
-                </v-text-field>
-
-                <v-divider ></v-divider>
-            </div>
-
             <v-list>
                 <v-list-item
                     v-for="item in items"
@@ -89,6 +70,12 @@ const items = [
         title: "Sedes",
         icon: "mdi-office-building-marker-outline",
         action: () => router.get("/a/places"),
+    },
+
+    {
+        title: "Busqueda de constancias",
+        icon: "mdi-office-building-marker-outline",
+        action: () => router.get("/a/records"),
     },
 ];
 </script>

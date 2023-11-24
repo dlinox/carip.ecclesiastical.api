@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\RecordControlller;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,6 +38,7 @@ Route::middleware(['admin'])->name('a.')->prefix('a')->group(function () {
     Route::resource('places', PlaceController::class);
     Route::patch('places/update-state/{id}', [PlaceController::class, 'updateState']);
 
+    Route::resource('records', RecordControlller::class);
 
     // Route::name('users.')->prefix('users')->group(function () {
 

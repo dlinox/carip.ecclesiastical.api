@@ -161,7 +161,6 @@ const formStructureEdit = [
         cols: 12,
     },
 
-
     {
         key: "role",
         label: "Rol",
