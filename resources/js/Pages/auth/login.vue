@@ -3,7 +3,7 @@
         <v-form @submit.prevent="login">
             <div class="d-flex justify-center align-center h-screen w-screen">
                 <v-card class="mx-auto" width="400">
-                    <img src="@/assets/images/img-login-1.jpg" />
+                    <img height="200" src="@/assets/images/img-login-1.jpg" style="width: 100%; object-fit: cover;" />
                     <v-card-title class="text-center">
                         <h1 class="text-h5">Login</h1>
                     </v-card-title>
