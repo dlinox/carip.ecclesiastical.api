@@ -42,14 +42,14 @@ class Controller extends BaseController
     public function apiDni($dni)
     {
 
-        $token = 'apis-token-6033.eYYGWDo5XL4QNNYsJaTjAlVX6VpOZ8Ja';
+        $token = 'apis-token-6530.DeptcIMtdwKqwqRN6Na5dpGqHkqpA5GE';
 
 		// Iniciar llamada a API
 		$curl = curl_init();
 
         curl_setopt_array($curl, array(
 			// para usar la versión 2
-			CURLOPT_URL => 'https://api.apis.net.pe/v1/dni?numero=' . $dni,
+			CURLOPT_URL => 'https://    /v1/dni?numero=' . $dni,
 			// para usar la versión 1
 			// CURLOPT_URL => 'https://api.apis.net.pe/v1/ruc?numero=' . $ruc,
 			CURLOPT_RETURNTRANSFER => true,
