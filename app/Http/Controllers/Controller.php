@@ -47,9 +47,6 @@ class Controller extends BaseController
 		// Iniciar llamada a API
 		$curl = curl_init();
 
-		// Buscar ruc sunat
-        $curl = curl_init();
-
         curl_setopt_array($curl, array(
 			// para usar la versión 2
 			CURLOPT_URL => 'https://api.apis.net.pe/v1/dni?numero=' . $dni,

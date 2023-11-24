@@ -32,7 +32,7 @@
                         </v-row>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn block type="sibmit" variant="flat">
+                        <v-btn  block type="sibmit" variant="flat">
                             Iniciar sesión
                         </v-btn>
                     </v-card-actions>
