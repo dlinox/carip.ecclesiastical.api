@@ -13,7 +13,7 @@
                         </v-btn>
                     </template>
                     <template v-slot:content="{ dialog }">
-                        <create @on-cancel="dialog" :url="url" />
+                        <create @on-cancel="dialog" :url="url" :places="places" />
                     </template>
                 </BtnDialog>
             </template>
@@ -75,6 +75,8 @@
                                 </template>
                                 <template v-slot:content="{ dialog }">
                                     <create
+
+                                    :places="places"
                                         @on-cancel="dialog"
                                         :form-data="item"
                                         :edit="true"
@@ -131,6 +133,7 @@ const props = defineProps({
     headers: Array,
     filters: Object,
     perPageOptions: Array,
+    places: Array,
 });
 
 const url = "/a/users";

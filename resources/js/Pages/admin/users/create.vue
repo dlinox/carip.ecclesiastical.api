@@ -43,6 +43,7 @@ const props = defineProps({
         default: false,
     },
     url: String,
+    places: Array,
 });
 
 const dniSearch = ref(null);
@@ -121,8 +122,9 @@ const formStructure = [
     {
         key: "place_id",
         label: "Sede",
-        type: "autocomplete",
-        url: "/autocomplete/places",
+        type: "combobox",
+        options: props.places,
+        // url: "/autocomplete/places",
         itemTitle: "name",
         itemValue: "id",
         itemsDefault: form.sede,
@@ -179,8 +181,9 @@ const formStructureEdit = [
     {
         key: "place_id",
         label: "Sede",
-        type: "autocomplete",
-        url: "/autocomplete/places",
+        type: "combobox",
+        options: props.places,
+        // url: "/autocomplete/places",
         itemTitle: "name",
         itemValue: "id",
         itemsDefault: form.sede,

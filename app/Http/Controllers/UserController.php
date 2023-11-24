@@ -6,6 +6,7 @@ use App\Models\Person;
 use App\Models\Place;
 use App\Models\Ubigeo;
 use App\Models\User;
+use App\Models\UserPlace;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -40,13 +41,16 @@ class UserController extends Controller
             'persons.maternal_name',
             'persons.document_number',
             'users.is_active',
+        
             // 'places.name',
-            // 'places.id',
+            'user_places.place_id',
         )
             ->join('persons', 'persons.id', '=', 'users.person_id')
-            // ->join('user_places', 'users.id','=', 'user_places.user_id')
+            ->leftJoin('user_places', 'users.id','=', 'user_places.user_id')
             // ->join('places', 'places.id', '=', 'user_places.place_id')
             ->paginate($perPage)->appends($request->query());
+
+        $places = Place::all(); 
 
         return Inertia::render('admin/users/index', [
             'items' => $items,
@@ -54,6 +58,7 @@ class UserController extends Controller
             'filters' => [
                 'search' => $request->search,
             ],
+            'places' => $places,
             'perPageOptions' => [10, 25, 50, 100], // Opciones de cantidad de elementos por página
         ]);
     }
@@ -78,6 +83,11 @@ class UserController extends Controller
         $user->password = $request->password;
         $user->save();
 
+        $user_place = new UserPlace();
+        $user_place->user_id = $user->id;
+        $user_place->place_id = $request->place_id;
+        $user_place->save();
+
         return redirect()->back()->with('success', 'Elemento creado exitosamente.');
     }
 
@@ -94,6 +104,11 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->role = $request->role;
         $user->save();
+
+        UserPlace::updateOrCreate(
+            ['user_id' => $user->id],
+            ['place_id' => $request->place_id]
+        );
 
         return redirect()->back()->with('success', 'Elemento actualizado exitosamente.');
     }
